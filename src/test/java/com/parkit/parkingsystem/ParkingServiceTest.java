@@ -82,9 +82,9 @@ public class ParkingServiceTest {
 		verify(ticketDAO, times(1)).getNbTicket("ABCDEF");
 		verify(parkingSpotDAO, times(1)).updateParking(
 				argThat(spot -> spot.getId() == 1 && !spot.isAvailable() && spot.getParkingType() == ParkingType.CAR));
-		verify(ticketDAO, times(1)).saveTicket(argThat(t -> "ABCDEF".equals(t.getVehicleRegNumber())
-				&& t.getInTime() != null && t.getOutTime() == null && t.getParkingSpot().getId() == 1
-				&& t.getPrice() == 0.0));
+		verify(ticketDAO, times(1))
+				.saveTicket(argThat(t -> "ABCDEF".equals(t.getVehicleRegNumber()) && t.getInTime() != null
+						&& t.getOutTime() == null && t.getParkingSpot().getId() == 1 && t.getPrice() == 0.0));
 	}
 
 	@Test
